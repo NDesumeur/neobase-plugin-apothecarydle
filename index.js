@@ -11,6 +11,9 @@ export default async function (ctx) {
   const $ = id => id === "dle_apothecarydle" ? view : (view.querySelector('#' + id) || document.getElementById(id));  // les identifiants de ta vue d'abord, puis ceux de la page (fenêtres, menus)
   const doc = async n => { try { return await folder.read(n); } catch { return null; } };
   const __icon = () => ctx.icon;  // l'icône de ce plugin
+  const __asset = async (rel, type) => URL.createObjectURL(new Blob([Uint8Array.from(atob(await neo.pluginFileRead(ctx.id, rel)), c => c.charCodeAt(0))], { type }));  // un fichier livré avec le plugin
+  const __imgs = {};  // les portraits livrés avec le plugin
+  await Promise.all(["ah-duo.webp","ailan.webp","anshi.webp","ayla.webp","aylin.webp","bakin.webp","baryou.webp","basen.webp","changsha.webp","chou-u.webp","chue.webp","dahai.webp","en-en.webp","fengming.webp","fengxian.webp","fuyou.webp","gaoshun.webp","guen.webp","guiyuan.webp","gyoku-ou.webp","gyokuen.webp","gyokujun.webp","gyokuyou.webp","hongniang.webp","jazgul.webp","jinshi.webp","joka.webp","junjie.webp","kanan.webp","kokuyou.webp","kounen.webp","l-ancien-empereur.webp","l-empereur.webp","l-imperatrice-regnante.webp","la-patronne.webp","la-pretresse-de-shaoh.webp","lahan.webp","lakan.webp","lakou.webp","le-chat-maomao.webp","le-frere-de-lahan.webp","li-medecin.webp","lihaku.webp","lihua.webp","lingli.webp","lishu.webp","liu.webp","luomen.webp","maamei.webp","maomao.webp","meimei.webp","onsou.webp","pairin.webp","rikuson.webp","sanfan.webp","sazen.webp","shenlu.webp","shenmei.webp","shikyou.webp","shishou.webp","shisui.webp","sotei.webp","suirei.webp","suiren.webp","taihou.webp","tairan.webp","taomei.webp","tianyu.webp","ujun.webp","ukyou.webp","uryuu.webp","xiaohong.webp","xiaolan.webp","xing.webp","yakou.webp","yao.webp","yinghua.webp","yo.webp","you-medecin.webp","zulin.webp"].map(async n => { __imgs[n] = await __asset('img/' + n, /.png$/.test(n) ? 'image/png' : /.webp$/.test(n) ? 'image/webp' : 'image/jpeg'); }));
   const LEGACY_GAMES = {"top":["apothecarydle"],"best":"^$"};
   let games = await doc('games');
   if (games == null) {  // première ouverture : tu retrouves tes records et tes parties d'avant
@@ -54,7 +57,7 @@ const DLE_GENDER = {F: 'Femme', M: 'Homme', V: 'Variable', N: 'Aucun', '?': 'Inc
 const dleDay = (d = new Date()) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const dleHash = s => { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; };
 const dleNorm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9぀-鿿]+/g, ' ').trim();
-const dleImg = (g, c) => c.img ? 'dle/img/' + g.dir + '/' + c.img : '';
+const dleImg = (g, c) => c.img ? (__imgs[c.img] || '') : '';
 
 /* ---------- comparing a guess with the answer, column by column ---------- */
 function dleCompare(g, guess, ans) {
