@@ -1,0 +1,9 @@
+{
+  "pluginId": "neobase.apothecarydle",
+  "repo": "NDesumeur/neobase-plugin-apothecarydle",
+  "version": "1.1.0",
+  "sha256": "ef72047403de614ea67c47a3101eed7bf730bd5c932430c7f153fb82f533b26f",
+  "approvedAt": "2026-10-31T22:44:06.013Z",
+  "neobase": ">=4.0.0",
+  "signature": "x9IDILGAihnEp4+Rzm1l9OTIyDuW2stH/F8OBnGhMsobLRA7C77PskeRXtuTC1hXqQKH12vN8Zk1NwlZYzwdAQ=="
+}
