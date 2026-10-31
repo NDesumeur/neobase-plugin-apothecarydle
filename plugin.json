@@ -1,7 +1,7 @@
 {
   "id": "neobase.apothecarydle",
   "name": "ApothecaryDle",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "NDesumeur",
   "description": "Devine un personnage des Carnets de l'apothicaire : colonnes comparées, indices, emoji et portrait.",
   "icon": "icon.png",
