@@ -1,0 +1,19 @@
+{
+  "id": "neobase.apothecarydle",
+  "name": "ApothecaryDle",
+  "version": "1.0.0",
+  "author": "NDesumeur",
+  "description": "Devine un personnage des Carnets de l'apothicaire : colonnes comparées, indices, emoji et portrait.",
+  "icon": "icon.png",
+  "entry": "index.js",
+  "view": "apothecarydle",
+  "neobase": ">=4.0.0",
+  "type": "app",
+  "category": "NeoDle",
+  "mobile": false,
+  "system": false,
+  "dependencies": {},
+  "permissions": [
+    "full"
+  ]
+}
